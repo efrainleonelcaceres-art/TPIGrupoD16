@@ -72,6 +72,28 @@ def registrar_nuevo_paciente():
     print(f"Pacientes actualmente en sala de espera: {len(sala_de_espera)}")
     print(f"Turnos disponibles restantes para hoy: {MAX_TURNOS_DIARIOS - totalPacientes}")
 
+def atender_siguiente():
+    global totalAtendidos, sala_de_espera, paciente_en_consulta
+    
+    if len(sala_de_espera) > 0:
+        totalAtendidos += 1  
+        
+        paciente_actual = sala_de_espera.pop(0)
+        
+        paciente_en_consulta = f"{paciente_actual['nombre']} (Turno: {paciente_actual['turno_nro']} - Especialidad: {paciente_actual['especialidad']})"
+        
+        print("\n" + "="*40)
+        print("¡PACIENTE INGRESADO A CONSULTA EXITOSAMENTE!")
+        print("="*40)
+        print(f"Paciente: {paciente_actual['nombre']}")
+        print(f"DNI: {paciente_actual['dni']}")
+        print(f"Especialidad: {paciente_actual['especialidad']}")
+        print(f"Prioridad de Atención: {paciente_actual['prioridad']}")
+        print("-"*40)
+        print(f"Pacientes restantes en sala de espera: {len(sala_de_espera)}")
+    else:
+        print("\nError: No hay ningún paciente registrado en espera de atención.")
+
 
 def main():
     while True: 
