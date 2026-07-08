@@ -25,7 +25,7 @@ Hacé clic en el siguiente enlace para acceder a los archivos del Proyecto:
     - Codigo en python: TPI-GRUPOD16.py
     - Video Demo del Programa: VIDEO PYTHON.mp4
 
-👉 **[https://drive.google.com/drive/folders/1LDeJjEhbNZg4nJNiiJAX3oEu-0fdkHg4?usp=sharing](URL_DEL_DRIVE_ACA)**
+👉 **[URL_DEL_DRIVE_ACÁ](https://drive.google.com/drive/folders/1LDeJjEhbNZg4nJNiiJAX3oEu-0fdkHg4?usp=sharing)**
 
 ---
 
