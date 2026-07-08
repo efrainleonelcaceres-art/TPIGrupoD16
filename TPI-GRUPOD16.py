@@ -94,6 +94,22 @@ def atender_siguiente():
     else:
         print("\nError: No hay ningún paciente registrado en espera de atención.")
 
+def mostrar_estadisticas():
+    global sala_de_espera, paciente_en_consulta
+    
+    print("\n=== REPORTE ESTADÍSTICO DIARIO ===")
+    print(f"Total de turnos otorgados en el día: {totalPacientes} de {MAX_TURNOS_DIARIOS}")
+    print(f"Total de pacientes ya atendidos: {totalAtendidos}")
+    print(f"Total de casos críticos/urgentes registrados: {totalUrgentes}")
+    print("-"*40)
+    
+    print(f"Paciente actualmente EN CONSULTA: {paciente_en_consulta}")
+    print(f"Cantidad de pacientes EN ESPERA: {len(sala_de_espera)}")
+    
+    if len(sala_de_espera) > 0:
+        print("\nLista de personas en espera (por orden de llegada):")
+        for p in sala_de_espera:
+            print(f" -> Turno Nro {p['turno_nro']}: {p['nombre']} [{p['especialidad']}]")
 
 def main():
     while True: 
