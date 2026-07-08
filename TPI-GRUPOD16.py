@@ -1,12 +1,20 @@
+
+# --- CONSTANTES DE CONFIGURACIÓN ---
 MAX_TURNOS_DIARIOS = 4
 
+# --- VARIABLES GLOBALIZADAS (ESTADO DEL SISTEMA Y ESTADÍSTICAS) 
 totalPacientes = 0
-totalAtendidos = 0
-totalUrgentes = 0
+totalAtendidos = 0 
+totalUrgentes = 0 
 
+# COLA DE ATENCIÓN
 sala_de_espera = []
 
+# Variable informativa para saber quién está adentro del consultorio en este momento
 paciente_en_consulta = "Ninguno (Consultorio Libre)"
+
+
+# --- SUBPROCESOS DE VALIDACIÓN Y MODULACIÓN ---
 
 def validar_rango(valor: int, minimo: int, maximo: int) -> bool:
     """Función condicional que verifica si un número está dentro de los límites."""
@@ -26,15 +34,18 @@ def leer_y_validar_entero(mensaje_ingreso: str, minimo: int, maximo: int, mensaj
             print("Error: Por favor, ingrese un número entero válido (Ej: un número sin letras).")
 
 
+# --- MÓDULOS DE OPERACIÓN DEL SISTEMA ---
+
 def registrar_nuevo_paciente():
     """Módulo encargado de validar el cupo diario general y registrar un paciente en la lista."""
     global totalPacientes, totalUrgentes, sala_de_espera
     
+    # 1. Control de disponibilidad general de turnos (Cupo diario absoluto)
     if totalPacientes == MAX_TURNOS_DIARIOS:
         print(f"\nALERTA: No se pueden emitir más turnos. Se alcanzó el cupo máximo diario de {MAX_TURNOS_DIARIOS}.")
         return 
 
-    totalPacientes += 1
+    totalPacientes += 1  # Incremento del contador histórico de turnos dado
     
     print(f"\n=== REGISTRO DE PACIENTE (Turno Nro: {totalPacientes}) ===")
     
@@ -44,6 +55,7 @@ def registrar_nuevo_paciente():
         "Error: DNI inválido. Debe tener entre 7 y 8 dígitos numéricos."
     )
     
+    # --- MODIFICACIÓN SOLICITADA ---
     nombre_completo = input("Ingrese Apellido y Nombres: ")
     
     print("\n--- Seleccione la Especialidad Médica ---")
@@ -75,6 +87,7 @@ def registrar_nuevo_paciente():
     if prioridad == 1:
         totalUrgentes += 1
 
+    # Guardar al paciente en la cola
     nuevo_paciente = {
         "turno_nro": totalPacientes,
         "dni": dni,
@@ -90,14 +103,18 @@ def registrar_nuevo_paciente():
     print(f"Pacientes actualmente en sala de espera: {len(sala_de_espera)}")
     print(f"Turnos disponibles restantes para hoy: {MAX_TURNOS_DIARIOS - totalPacientes}")
 
+
 def atender_siguiente():
+    """Módulo que toma al primer paciente de la lista y lo ingresa al consultorio."""
     global totalAtendidos, sala_de_espera, paciente_en_consulta
     
     if len(sala_de_espera) > 0:
         totalAtendidos += 1  
         
+        # Extraemos al PRIMER paciente de la lista
         paciente_actual = sala_de_espera.pop(0)
         
+        # Guardamos sus datos en la variable de consulta actual
         paciente_en_consulta = f"{paciente_actual['nombre']} (Turno: {paciente_actual['turno_nro']} - Especialidad: {paciente_actual['especialidad']})"
         
         print("\n" + "="*40)
@@ -112,7 +129,9 @@ def atender_siguiente():
     else:
         print("\nError: No hay ningún paciente registrado en espera de atención.")
 
+
 def mostrar_estadisticas():
+    """Módulo que genera el reporte diario del estado del centro de salud."""
     global sala_de_espera, paciente_en_consulta
     
     print("\n=== REPORTE ESTADÍSTICO DIARIO ===")
@@ -129,6 +148,8 @@ def mostrar_estadisticas():
         for p in sala_de_espera:
             print(f" -> Turno Nro {p['turno_nro']}: {p['nombre']} [{p['especialidad']}]")
 
+
+# --- PROCESO PRINCIPAL (MENÚ CONTROLADOR) --- 
 def main():
     while True: 
         print("\n" + "-"*40)
