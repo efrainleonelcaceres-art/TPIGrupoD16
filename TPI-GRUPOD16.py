@@ -8,6 +8,24 @@ sala_de_espera = []
 
 paciente_en_consulta = "Ninguno (Consultorio Libre)"
 
+def validar_rango(valor: int, minimo: int, maximo: int) -> bool:
+    """Función condicional que verifica si un número está dentro de los límites."""
+    return minimo <= valor <= maximo
+
+
+def leer_y_validar_entero(mensaje_ingreso: str, minimo: int, maximo: int, mensaje_error: str) -> int:
+    """Procedimiento iterativo para la lectura segura de enteros y control de excepciones."""
+    while True:
+        try:
+            valor = int(input(mensaje_ingreso))
+            if validar_rango(valor, minimo, maximo):
+                return valor
+            else:
+                print(mensaje_error)
+        except ValueError:
+            print("Error: Por favor, ingrese un número entero válido (Ej: un número sin letras).")
+
+
 def registrar_nuevo_paciente():
     """Módulo encargado de validar el cupo diario general y registrar un paciente en la lista."""
     global totalPacientes, totalUrgentes, sala_de_espera
