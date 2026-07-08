@@ -19,11 +19,13 @@ diarias de un centro de salud.
 
 ---
 
-## 🎥 Video de la Demo
+## 🎥 Carpeta Drive
 
-Hacé clic en el siguiente enlace para ver el video con la demostración funcional de la app:
+Hacé clic en el siguiente enlace para acceder a los archivos del Proyecto:
+    - Codigo en python: TPI-GRUPOD16.py
+    - Video Demo del Programa: VIDEO PYTHON.mp4
 
-👉 **[Ver Video de la Demo Aquí](URL_DEL_VIDEO_ACA)**
+👉 **[https://drive.google.com/drive/folders/1LDeJjEhbNZg4nJNiiJAX3oEu-0fdkHg4?usp=sharing](URL_DEL_DRIVE_ACA)**
 
 ---
 
@@ -42,15 +44,22 @@ Toda sugerencia fue analizada, adaptada y comprendida por los integrantes antes 
 
 ## 🚀 Cómo ejecutar el proyecto
 
-1. Clonar este repositorio.
+1. Clonar este repositorio:
 
 ```bash
 git clone https://github.com/efrainleonelcaceres-art/TPIGrupoD16.git
 ```
-2. Abrir la terminal en la carpeta del proyecto.
 
-3. Ejecutar el archivo principal con el comando:
+2. Acceder a la carpeta del proyecto:
+
+```bash
+cd TPIGrupoD16
+```
+
+3. Ejecutar el archivo principal:
 
 ```bash
 python TPI-GRUPOD16.py
 ```
+
+> **Requisito:** Tener instalado Python 3.14 o superior.
